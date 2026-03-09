@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"dev": "tsx index.ts"
+		"dev": "tsx src/index.ts"
 	},
 	"author": "",
 	"license": "ISC",

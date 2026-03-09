@@ -41,11 +41,17 @@ console.log("\n--- Test 3: Withdraw $1,000 (normal) ---")
 const afterWithdraw = withdraw(afterDeposit, 1000)
 console.log(`New balance after withdrawal: $${afterWithdraw.balance}`)
 
-// --- Test 4: Large withdrawal (triggers fraud detection) ---
+// --- Test 4: Withdraw $5,500 (triggers fraud detection observer) ---
 console.log("\n--- Test 4: Withdraw $5,500 (triggers SuspiciousWithdrawal) ---")
-const bob = createAccount(uuidv4(), "Bob Smith", 20000)
-const afterSuspicious = withdraw(bob, 5500)
-console.log(`New balance after large withdrawal: $${afterSuspicious.balance}`)
+try {
+  const bob = createAccount(uuidv4(), "Bob Smith", 20000)
+  const afterSuspicious = withdraw(bob, 5500)
+  console.log(`New balance after large withdrawal: $${afterSuspicious.balance}`)
+} catch (error) {
+  if (error instanceof Error) {
+    console.error(`✋ Caught expected error: ${error.message}`)
+  }
+}
 
 // ============================================================
 // STEP 3 — Invalid / impossible data tests
